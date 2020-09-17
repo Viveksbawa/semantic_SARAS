@@ -1,0 +1,31 @@
+DATASET:
+  root_dataset: "/mnt/mars-fast/segment_datasets/ADE20K"
+  num_class: 150
+  multiscale: True
+MODEL:
+  arch_encoder: "resnet50"
+  arch_decoder: "ocnet"
+  fc_dim: 2048
+
+TRAIN:
+  batch_size: 8
+  num_epoch: 80
+  start_epoch: 0
+  optim: "SGD"
+  lr_encoder: 0.002
+  lr_decoder: 0.01
+  lr_pow: 1.2
+  momentum: 0.9
+  weight_decay: 1e-4
+  fix_bn: False
+  workers: 12
+  gpus: []
+  seed: 300
+
+VAL:
+  val_step: 3
+  validate: True
+  checkpoint: "max.pth"
+
+
+DIR: "ckpt/ade20k-resnet50-ocnet"
