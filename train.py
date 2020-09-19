@@ -110,7 +110,7 @@ for epoch in range(cfg.TRAIN.start_epoch, cfg.TRAIN.num_epoch):
         # print(tr_acc/tr_pix, loss.item())
         
         #print training information
-        print('\r Training:Epoch[{}]-Iter[{}/{}] = Loss:{:.3f}' 
+        print('\rTraining:Epoch[{}]-Iter[{}/{}] = Loss:{:.3f}' 
             '= Acc:{:.3f} = LR:{:.5f} = time:{:.1f}'.format(
             epoch, i, len(loader_train), train_loss.average(), train_acc.average(), lr,
             time.time() - tic), end= '')
@@ -121,6 +121,7 @@ for epoch in range(cfg.TRAIN.start_epoch, cfg.TRAIN.num_epoch):
     # validation of model performance in the validation set
     if cfg.VAL.validate:
         if (epoch) % cfg.VAL.val_step ==0 or epoch == cfg.TRAIN.num_epoch:
+            print('Evaluating model!')
             val_miou, val_ciou, val_acc = validation(model, loader_val, cfg)
             history['val_miou'].append(val_miou)
             history['val_ciou'].append(val_ciou)

@@ -87,7 +87,7 @@ def validation(model, val_loader, cfg):
             IoU = 1.0 * total_inter / (np.spacing(1) + total_union)
             mIoU = IoU.mean()
             tbar.set_description(
-                'pixAcc: %.3f, mIoU: %.3f' % (pixAcc, mIoU))
+                'Validation mIoU: %.3f, pixAcc: %.3f' % (mIoU, pixAcc))
     return mIoU, IoU, pixAcc
 
 
