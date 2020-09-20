@@ -35,18 +35,17 @@ class ADE20KSegmentation(data.Dataset):
         self.input_transform = transform.Compose([
             transform.ToTensor(),
             transform.Normalize([.485, .456, .406], [.229, .224, .225])])
-            
-        if self.mode == 'train':
-            print('BaseDataset: base_size {}, crop_size {}, multiscale {}'. \
-                format(base_size, crop_size, scale))
-
-            
+                        
         self.images, self.masks = _get_ade20k_pairs(self.root, split)
 
         if split != 'test':
             assert (len(self.images) == len(self.masks))
         if len(self.images) == 0:
             raise(RuntimeError("Found 0 images in subfolders of:" + root + "\n"))
+            
+        if self.mode == 'train':
+            print('Dataset: ADE20k, base_size:{}, crop_size:{}, Samples:{}, multiscale:{}'. \
+                format(self.base_size, self.crop_size, len(self.images), self.scale))
 
     def __getitem__(self, index):
         img = Image.open(self.images[index]).convert('RGB')

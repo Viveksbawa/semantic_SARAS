@@ -9,7 +9,7 @@ import torch.nn as nn
 from torch.nn.parallel.scatter_gather import gather
 # Our libs
 from config import cfg
-from datasets import ade20k
+from datasets import cityscape
 from models import encoders, decoders
 from models import SegmentationModel2
 
@@ -21,7 +21,7 @@ from lib.loss import SegmentationLosses
 #----------------------------------------------------------------------------
 #Training setup and configuration loading
 parser = argparse.ArgumentParser(description="PyTorch Semantic Segmentation Training")
-parser.add_argument("--cfg", default="config/ade20k-resnet.yaml", metavar="FILE",
+parser.add_argument("--cfg", default="config/cityscape-resnet.yaml", metavar="FILE",
     help="path to config file", type=str)
 
 args = parser.parse_args()
@@ -39,14 +39,14 @@ torch.manual_seed(cfg.TRAIN.seed)
 
 #-----------------------------------------------------------------------
 # Tarining and Validation Dataset Loader
-dataset_train = ade20k.ADE20KSegmentation(root= cfg.DATASET.root_dataset, 
-                split='train', scale= cfg.DATASET.multiscale)
+dataset_train = cityscape.CitySegmentation(root=cfg.DATASET.root_dataset, 
+                    split='train', mode='train') 
 loader_train = torch.utils.data.DataLoader(dataset_train, batch_size=cfg.TRAIN.batch_size,
     shuffle=True, num_workers=cfg.TRAIN.workers, drop_last=True, pin_memory=True)
 
 if cfg.VAL.validate:
-    dataset_val = ade20k.ADE20KSegmentation(
-                    root= cfg.DATASET.root_dataset, split='val')
+    dataset_val = cityscape.CitySegmentation(root=cfg.DATASET.root_dataset, 
+                    split='val', mode='val')
     loader_val = torch.utils.data.DataLoader(dataset_val, batch_size=cfg.TRAIN.batch_size, 
                 shuffle=False, num_workers=cfg.TRAIN.workers, drop_last=False)
 

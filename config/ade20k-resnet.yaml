@@ -8,7 +8,8 @@ MODEL:
   fc_dim: 2048
 
 TRAIN:
-  batch_size: 8
+  batch_size: 12
+  workers: 16
   num_epoch: 80
   start_epoch: 0
   optim: "SGD"
@@ -18,7 +19,6 @@ TRAIN:
   momentum: 0.9
   weight_decay: 1e-4
   fix_bn: False
-  workers: 12
   gpus: []
   seed: 300
 
