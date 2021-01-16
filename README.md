@@ -1,13 +1,24 @@
-#Semantic segmentation using PSPNet, OCNet and DANet
+#SARAS semantic segmentation module
 
-This is the implementation of semantic image segmentation system. The Neural Network architecture used for segmentation is divided into two components: Encoder and Decoder
+This module is developed under [SARAS project](https://saras-project.eu/). The semantic scene segmentation module contains multiple backbones and decoders (sematic models). The Neural Network architectures for segmentation are divided into two components: Encoder and Decoder.
 
-This repo contains Resnet based encoder: Resnet50, Resnet 101, ResNest 50, ResNest 101, Resnest 200
-and the decoder implemented are: PSPNet, OCNet and DANet.
+- Encoder represent the pretrained backbone. This implementation contains Resnet and ResNest based backbones. 
+- The dcoder represent the semantic segmentation model. We already haev implemented OCNet, DANet, UPerNet and PSPNet in the module.
+- Data feeding pipelines for ADE20k and Cityscapes dataset are already available in the module.
 
 
-* The module has training pipelines for ADE20K and Cityscape datasets
-* Each has
+## Requirements
+
+* pytorch 1.5
+* python 3.6 
+
+
+
+### References
+Some components of this module are takes from following packages:
+
+- [CSAILVision/semantic-segmentation-pytorch](https://github.com/CSAILVision/semantic-segmentation-pytorch)
+- [junfu1115/DANet](https://github.com/junfu1115/DANet)
 
 
 

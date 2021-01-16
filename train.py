@@ -141,8 +141,7 @@ for epoch in range(cfg.TRAIN.start_epoch, cfg.TRAIN.num_epoch):
                         'decoder': net_decoder.state_dict(),
                         'optimizer': optimizer.state_dict()},
                         cfg=cfg, best= best_model, history= history)
-            # checkpoint(encoder=net_encoder,decoder=net_decoder,
-            #             cfg=cfg,history=history,best=best_model)
+
 
     
 
